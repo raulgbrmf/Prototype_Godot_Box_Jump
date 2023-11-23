@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjumglakoubdj"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_30vta"]
+[ext_resource type="Texture2D" uid="uid://dkerfxhsce7dy" path="res://graphics/Solid_white.png" id="2_3h1u6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lyev"]
+size = Vector2(30, 30)
+
+[sub_resource type="Animation" id="Animation_w147q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3mfv4"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5m255"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8p3hi"]
+_data = {
+"RESET": SubResource("Animation_w147q"),
+"fade_in": SubResource("Animation_3mfv4"),
+"fade_out": SubResource("Animation_5m255")
+}
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(113, 85)
+script = ExtResource("1_30vta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6lyev")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -0.500001)
+scale = Vector2(0.15, 0.155)
+texture = ExtResource("2_3h1u6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8p3hi")
+}
