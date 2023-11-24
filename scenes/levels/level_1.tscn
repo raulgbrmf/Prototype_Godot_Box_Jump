@@ -44,4 +44,8 @@ shape = SubResource("RectangleShape2D_v3j00")
 [node name="Player" parent="." instance=ExtResource("2_of53l")]
 position = Vector2(-58, 272)
 
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

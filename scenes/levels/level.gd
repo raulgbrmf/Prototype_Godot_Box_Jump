@@ -14,10 +14,16 @@ func _process(delta):
 func _on_end_body_entered(body):
 	if body == $Player:
 		body.destroy()
-		body.create($SpawnPoint.position)
+		$RespawnTimer.start()
+		
 
 func restart_level():
 	if Input.is_action_pressed("enter"):
 		print("entered")
 		$Player.destroy()
-		$Player.create($SpawnPoint.position)
+		$RespawnTimer.start()
+
+
+func _on_respawn_timer_timeout():
+	$Player.create($SpawnPoint.position)
+	$RespawnTimer.stop()

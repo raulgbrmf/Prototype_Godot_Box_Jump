@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjumglakoubdj"]
+[gd_scene load_steps=9 format=3 uid="uid://cjumglakoubdj"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_30vta"]
 [ext_resource type="Texture2D" uid="uid://dkerfxhsce7dy" path="res://graphics/Solid_white.png" id="2_3h1u6"]
@@ -20,6 +20,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_3mfv4"]
 resource_name = "fade_in"
@@ -38,7 +50,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5m255"]
 resource_name = "fade_out"
-length = 0.5
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,17 +58,34 @@ tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cp0jf"]
+resource_name = "jump"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8p3hi"]
 _data = {
 "RESET": SubResource("Animation_w147q"),
 "fade_in": SubResource("Animation_3mfv4"),
-"fade_out": SubResource("Animation_5m255")
+"fade_out": SubResource("Animation_5m255"),
+"jump": SubResource("Animation_cp0jf")
 }
 
 [node name="Player" type="CharacterBody2D"]
