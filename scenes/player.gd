@@ -1,15 +1,17 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 270.0
+const JUMP_VELOCITY = -500.0
 
 var running: bool = false
 
 var effect_explosion = preload("res://scenes/explosion.tscn")
 
+signal was_hit
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 1.5
 	
 func _ready():
 	stop()
@@ -49,3 +51,6 @@ func create(pos):
 	position = pos
 	rotation = 0
 	$AnimationPlayer.play("fade_in")
+	
+func hit():
+	was_hit.emit()

@@ -46,7 +46,6 @@ shape = SubResource("RectangleShape2D_v3j00")
 position = Vector2(-58, 272)
 
 [node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 0.1
 
 [node name="Obstacle1" parent="." instance=ExtResource("4_ui7v4")]
 position = Vector2(708, 354)
@@ -54,10 +53,9 @@ scale = Vector2(1, 0.1)
 target_scale_proportion = Vector2(1, 3)
 
 [node name="Obstacle2" parent="." instance=ExtResource("4_ui7v4")]
-position = Vector2(466, 352)
-scale = Vector2(2, 0.5)
-target_scale_proportion = Vector2(2, 3)
+position = Vector2(435, 354)
+scale = Vector2(1, 0.1)
+target_scale_proportion = Vector2(1, 4)
 
 [connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]
-[connection signal="was_hit" from="Player" to="." method="_on_player_was_hit"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

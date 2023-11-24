@@ -35,6 +35,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_3mfv4"]
 resource_name = "fade_in"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,7 +43,7 @@ tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -66,7 +67,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_cp0jf"]
 resource_name = "jump"
-length = 0.9
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -74,7 +75,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.9),
+"times": PackedFloat32Array(0, 0.2, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.785398, 1.5708]
@@ -90,6 +91,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(113, 85)
+scale = Vector2(0.9, 0.8)
 script = ExtResource("1_30vta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

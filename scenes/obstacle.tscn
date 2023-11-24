@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc2kie6l58en8"]
+[gd_scene load_steps=5 format=3 uid="uid://dc2kie6l58en8"]
 
 [ext_resource type="Texture2D" uid="uid://dkerfxhsce7dy" path="res://graphics/Solid_white.png" id="1_7u7le"]
 [ext_resource type="Script" path="res://scenes/obstacle.gd" id="1_y7j0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o65gi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i61xt"]
+size = Vector2(22, 21)
 
 [node name="Obstacle" type="CharacterBody2D"]
 position = Vector2(434, 206)
@@ -17,3 +20,11 @@ position = Vector2(0, 9)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_7u7le")
 offset = Vector2(0, -90)
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_i61xt")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

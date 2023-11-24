@@ -3,6 +3,8 @@ extends CharacterBody2D
 # Target scale proportion
 @export var target_scale_proportion = Vector2(4, 4)  # Example
 
+signal was_hit(body)
+
 func _ready():
 	# Start the scaling animation
 	animate_scaling(target_scale_proportion)
@@ -37,3 +39,8 @@ func animate_scaling(target_scale: Vector2):
 	)
 
 	tween.play()
+
+
+func _on_player_detector_body_entered(body):
+	if "hit" in body:
+		body.hit()
