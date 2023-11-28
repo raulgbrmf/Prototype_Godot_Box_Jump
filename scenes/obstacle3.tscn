@@ -1,25 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://wmpybgi7eany"]
+[gd_scene load_steps=5 format=3 uid="uid://wtp0ytnahlk7"]
 
-[ext_resource type="Texture2D" uid="uid://dkerfxhsce7dy" path="res://graphics/Solid_white.png" id="1_7u7le"]
-[ext_resource type="Script" path="res://scenes/obstacle.gd" id="1_y7j0p"]
+[ext_resource type="Script" path="res://scenes/obstacle3.gd" id="1_b1p4r"]
+[ext_resource type="Texture2D" uid="uid://bnerjg7s62p1b" path="res://graphics/Solid_grey.png" id="2_fg5nd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o65gi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i61xt"]
 size = Vector2(22, 22)
 
-[node name="Obstacle" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i61xt"]
+size = Vector2(18, 24)
+
+[node name="Obstacle3" type="CharacterBody2D"]
 position = Vector2(434, 206)
-script = ExtResource("1_y7j0p")
+script = ExtResource("1_b1p4r")
+target_scale_proportion = Vector2(30, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o65gi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 9)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_7u7le")
-offset = Vector2(0, -90)
+position = Vector2(3.44515e-05, 1.39475e-05)
+scale = Vector2(0.0733332, 0.0733333)
+texture = ExtResource("2_fg5nd")
+offset = Vector2(-0.000488281, -0.000244141)
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 

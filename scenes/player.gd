@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 
 const SPEED = 270.0
-const JUMP_VELOCITY = -500.0
+var JUMP_VELOCITY = -500.0
 
-var running: bool = false
+var can_run: bool = true
 
 var effect_explosion = preload("res://scenes/explosion.tscn")
 
@@ -18,11 +18,14 @@ func _ready():
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	if is_on_floor():
+	velocity.y += gravity * delta
+	
+	if is_on_floor() and Globals.get_levels() != 1 and can_run:
 		run()
+	elif Input.is_action_just_pressed("jump") and is_on_floor() and can_run:
+		run()
+		$AnimationPlayer.play("jump")
+		velocity.y = JUMP_VELOCITY
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -32,11 +35,11 @@ func _physics_process(delta):
 	move_and_slide()
 
 func run():
-	running = true
+	print("running")
 	velocity.x = 1 * SPEED
 
 func stop():
-	running = false
+	print("stopping")
 	velocity.x = 0
 	
 func destroy():
@@ -54,3 +57,15 @@ func create(pos):
 	
 func hit():
 	was_hit.emit()
+	
+func reverse_gravity():
+	stop()
+	can_run = false
+	print("GRAVITY REVERSED")
+	gravity = gravity * -1
+	JUMP_VELOCITY = JUMP_VELOCITY * -1
+	$StopTimer.start(0.01)
+
+func _on_stop_timer_timeout():
+	run()
+	can_run = true

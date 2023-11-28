@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	restart_level()
 
 func restart_level():
@@ -27,7 +27,19 @@ func _on_respawn_timer_timeout():
 func _on_player_was_hit():
 	$Player.destroy()
 	$RespawnTimer.start()
+	Globals.increase_tries()
+	$UI.update() 
 
 func _on_end_body_entered(body):
 	if body == $Player:
-		get_tree().change_scene_to_file(Globals.levels_list[choose_random_index(Globals.levels_list)])
+		Globals.increase_levels()
+		#if Globals.get_levels() > 3:
+		#	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		#else:
+			# random
+			#get_tree().change_scene_to_file(Globals.levels_list[choose_random_index(Globals.levels_list)])
+			# fixed
+			#get_tree().change_scene_to_file(Globals.levels_list[Globals.get_levels() - 1])
+		# just a test to restart and test the scene
+		if "hit" in body:
+			body.hit()

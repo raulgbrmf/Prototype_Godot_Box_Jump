@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhrsy74dlgfy3"]
+
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_t0e0d"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_t0e0d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1151.0
+offset_bottom = 650.0
+color = Color(0.376471, 0.643137, 0.32549, 1)
+metadata/_edit_lock_ = true
+
+[node name="WinMessage" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 456.0
+offset_top = 256.0
+offset_right = -448.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Complete!"
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 528.0
+offset_top = 344.0
+offset_right = -528.0
+offset_bottom = -259.0
+theme_override_font_sizes/font_size = 30
+text = "Score: "
+horizontal_alignment = 1

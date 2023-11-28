@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1fdvjs8y5uob"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_2x8bs"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_2x8bs")
+
+[node name="Tries" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 143.0
+offset_top = 548.0
+offset_right = -969.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+
+[node name="LevelCount" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 928.0
+offset_top = 548.0
+offset_right = -161.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "1/20"
+
+[node name="StartMessage" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 565.0
+offset_top = 548.0
+offset_right = -547.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Press space to start"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

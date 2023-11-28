@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg43plsgon2u6"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_iysk8"]
+[ext_resource type="PackedScene" uid="uid://c1fdvjs8y5uob" path="res://scenes/ui.tscn" id="2_53hfo"]
+[ext_resource type="Texture2D" uid="uid://dkerfxhsce7dy" path="res://graphics/Solid_white.png" id="3_uxcub"]
+[ext_resource type="PackedScene" uid="uid://cjumglakoubdj" path="res://scenes/player.tscn" id="4_rnbmp"]
+[ext_resource type="PackedScene" uid="uid://wmpybgi7eany" path="res://scenes/obstacle.tscn" id="5_f56m3"]
+[ext_resource type="PackedScene" uid="uid://dc2kie6l58en8" path="res://scenes/obstacle2.tscn" id="6_t8vro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlmww"]
+size = Vector2(908.25, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3j00"]
+size = Vector2(106, 180)
+
+[node name="Level7" type="Node2D"]
+script = ExtResource("1_iysk8")
+
+[node name="UI" parent="." instance=ExtResource("2_53hfo")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 645.0
+color = Color(0.972549, 0.486275, 0.341176, 1)
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(564, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(4, -2)
+shape = SubResource("RectangleShape2D_wlmww")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(4, -2)
+scale = Vector2(4.54, 0.03)
+texture = ExtResource("3_uxcub")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(153, 204)
+
+[node name="End" type="Area2D" parent="."]
+position = Vector2(1072, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End"]
+shape = SubResource("RectangleShape2D_v3j00")
+
+[node name="Player" parent="." instance=ExtResource("4_rnbmp")]
+position = Vector2(-58, 272)
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Obstacle" parent="." instance=ExtResource("5_f56m3")]
+position = Vector2(280, 350)
+scale = Vector2(1, 0.5)
+target_scale_proportion = Vector2(2, 3)
+
+[node name="Obstacle2" parent="." instance=ExtResource("5_f56m3")]
+position = Vector2(420, 352)
+scale = Vector2(1, 0.5)
+target_scale_proportion = Vector2(2, 6)
+
+[node name="Obstacle4" parent="." instance=ExtResource("5_f56m3")]
+position = Vector2(580, 352)
+scale = Vector2(1, 0.5)
+target_scale_proportion = Vector2(2, 8.7)
+
+[node name="Obstacle5" parent="." instance=ExtResource("6_t8vro")]
+position = Vector2(350, 300)
+scale = Vector2(0.5, 0.5)
+target_scale_proportion = Vector2(3, 0.5)
+
+[node name="Obstacle6" parent="." instance=ExtResource("6_t8vro")]
+position = Vector2(490, 240)
+scale = Vector2(0.5, 0.5)
+target_scale_proportion = Vector2(3, 0.5)
+
+[node name="Obstacle7" parent="." instance=ExtResource("6_t8vro")]
+position = Vector2(941, 264)
+scale = Vector2(0.5, 0.5)
+target_scale_proportion = Vector2(3, 0.5)
+
+[node name="Obstacle8" parent="." instance=ExtResource("6_t8vro")]
+position = Vector2(704, 264)
+scale = Vector2(0.5, 0.5)
+target_scale_proportion = Vector2(3, 0.5)
+
+[node name="Obstacle9" parent="." instance=ExtResource("5_f56m3")]
+position = Vector2(832, 352)
+scale = Vector2(1, 0.5)
+target_scale_proportion = Vector2(2, 7)
+
+[node name="Obstacle10" parent="." instance=ExtResource("5_f56m3")]
+position = Vector2(938, 352)
+scale = Vector2(1, 0.5)
+target_scale_proportion = Vector2(6, 0.5)
+
+[connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]
+[connection signal="was_hit" from="Player" to="." method="_on_player_was_hit"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

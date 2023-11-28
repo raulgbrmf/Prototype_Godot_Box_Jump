@@ -37,11 +37,10 @@ func animate_scaling(target_scale: Vector2):
 		final_position,  # Final value
 		0.5  # Duration of the animation in seconds
 	)
-
 	tween.play()
 
 
 func _on_player_detector_body_entered(body):
-	if "hit" in body:
-		body.hit()
+	if "reverse_gravity" in body:
+		body.reverse_gravity()
 	

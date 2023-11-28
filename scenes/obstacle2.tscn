@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc2kie6l58en8"]
+
+[ext_resource type="Script" path="res://scenes/obstacle.gd" id="1_y7j0p"]
+[ext_resource type="Texture2D" uid="uid://cuvjprrgmetxo" path="res://graphics/Solid_black.png" id="2_oe16t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i61xt"]
+size = Vector2(6, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o65gi"]
+
+[node name="Obstacle2" type="CharacterBody2D"]
+position = Vector2(434, 206)
+script = ExtResource("1_y7j0p")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_i61xt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o65gi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3.51563)
+scale = Vector2(0.0390625, 0.0390625)
+texture = ExtResource("2_oe16t")
+offset = Vector2(0, -90)
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

@@ -1,12 +1,13 @@
 extends Node
 
 var tries = 0
-var levels = 1
+var levels = 2
 
 var Level1 = "res://scenes/levels/level_1.tscn"
 var Level2 = "res://scenes/levels/level_2.tscn"
+var Level3 = "res://scenes/levels/level_3.tscn"
 
-var levels_list = [Level1, Level2]
+var levels_list = [Level1, Level2, Level3]
 
 func increase_tries():
 	tries += 1
@@ -22,3 +23,6 @@ func increase_levels():
 	
 func get_levels():
 	return levels 
+
+func reset_levels():
+	levels = 1
