@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bnerjg7s62p1b" path="res://graphics/Solid_grey.png" id="2_fg5nd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o65gi"]
-size = Vector2(22, 22)
+size = Vector2(16, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i61xt"]
-size = Vector2(18, 24)
+size = Vector2(12, 26)
 
 [node name="Obstacle3" type="CharacterBody2D"]
 position = Vector2(434, 206)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjumglakoubdj"]
+[gd_scene load_steps=10 format=3 uid="uid://cjumglakoubdj"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_30vta"]
 [ext_resource type="Texture2D" uid="uid://dkerfxhsce7dy" path="res://graphics/Solid_white.png" id="2_3h1u6"]
+[ext_resource type="PackedScene" uid="uid://dg4rucq17ibr1" path="res://scenes/sounds.tscn" id="3_ywp3x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lyev"]
 size = Vector2(30, 30)
@@ -108,5 +109,7 @@ libraries = {
 }
 
 [node name="StopTimer" type="Timer" parent="."]
+
+[node name="Sounds" parent="." instance=ExtResource("3_ywp3x")]
 
 [connection signal="timeout" from="StopTimer" to="." method="_on_stop_timer_timeout"]

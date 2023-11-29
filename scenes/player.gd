@@ -22,17 +22,20 @@ func _physics_process(delta):
 	
 	if is_on_floor() and Globals.get_levels() != 1 and can_run:
 		run()
-	elif Input.is_action_just_pressed("jump") and is_on_floor() and can_run:
+	elif Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling())  and can_run:
 		run()
-		$AnimationPlayer.play("jump")
-		velocity.y = JUMP_VELOCITY
+		jump()
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		$AnimationPlayer.play("jump")
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling()):
+		jump()
 
 	move_and_slide()
+
+func jump():
+	$AnimationPlayer.play("jump")
+	$Sounds.jump()
+	velocity.y = JUMP_VELOCITY
 
 func run():
 	print("running")
@@ -47,10 +50,14 @@ func destroy():
 	add_child(explosion)
 	explosion.global_position = position
 	velocity = Vector2(0,0)
+	$Sounds.die()
 	$AnimationPlayer.play("fade_out")
 	
 	
 func create(pos):
+	can_run = false
+	stop()
+	$StopTimer.start(0.1)
 	position = pos
 	rotation = 0
 	$AnimationPlayer.play("fade_in")
@@ -61,11 +68,13 @@ func hit():
 func reverse_gravity():
 	stop()
 	can_run = false
-	print("GRAVITY REVERSED")
 	gravity = gravity * -1
 	JUMP_VELOCITY = JUMP_VELOCITY * -1
-	$StopTimer.start(0.01)
+	$StopTimer.start(0.1)
 
 func _on_stop_timer_timeout():
-	run()
-	can_run = true
+	if is_on_floor() or is_on_ceiling():
+		run()
+		can_run = true
+	else:
+		$StopTimer.start(0.1)

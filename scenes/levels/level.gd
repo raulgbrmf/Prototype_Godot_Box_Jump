@@ -33,13 +33,13 @@ func _on_player_was_hit():
 func _on_end_body_entered(body):
 	if body == $Player:
 		Globals.increase_levels()
-		#if Globals.get_levels() > 3:
-		#	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-		#else:
+		if Globals.get_levels() > 13:
+			get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		else:
 			# random
 			#get_tree().change_scene_to_file(Globals.levels_list[choose_random_index(Globals.levels_list)])
 			# fixed
-			#get_tree().change_scene_to_file(Globals.levels_list[Globals.get_levels() - 1])
+			get_tree().change_scene_to_file(Globals.levels_list[Globals.get_levels() - 1])
 		# just a test to restart and test the scene
-		if "hit" in body:
-			body.hit()
+		#if "hit" in body:
+		#	body.hit()
